@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head>
-        <title>Notes App GB</title>
+        <title>Notes App</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="http://localhost:8080/style.css" rel="stylesheet" type="text/css">
@@ -11,7 +11,7 @@
             <div class="title_main"><h2>Список заметок</h2></div>
             <div class="list_of_notes" th:if="${notes!=null and !notes.empty}">
                 <div th:each="note : ${notes}">
-                    <a th:href="@{note/{id}(id=${note.getId()})}" th:text="${note.getId()} + '. ' + ${note.getTitle()}"></a>
+                    <a th:href="@{/note/{id}(id=${note.getId()})}" th:text="${note.getId()} + '. ' + ${note.getTitle()}"></a>
                 </div>
             </div>
             <div class="list_of_notes" th:unless="${notes!=null and !notes.empty}"><p>Заметок нет. Создайте первую заметку!</p></div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head>
-        <title>Notes App GB</title>
+        <title>Notes App</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="http://localhost:8080/style.css" rel="stylesheet" type="text/css">
@@ -11,7 +11,7 @@
             <div class="title_main"><h2>Выберите тип заметки</h2></div>
             <div class="footer_main" th:if="${types!=null and !types.empty}">
                 <div class="buttons" th:each="type : ${types}">
-                    <div class="new_note">
+                    <div class="new_note" th:style="'background:' + @{${type.getColor()}}">
                         <p class="typename" th:text="${type.getTypename()}"></p>
                         <p class="typeid" th:text="${type.getId()}"></p>
                     </div>

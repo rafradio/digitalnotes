@@ -133,7 +133,9 @@ body {
 }
 .form-field__input_date {
     height: 15px;
-    width: 250px;
+    width: 150px;
+    margin-right: 15px;
+    overflow: hidden;
 }
 #edit {
     margin-top: 10px;

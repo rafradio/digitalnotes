@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <title>Notes App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="http://localhost:8080/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <form id="newNote" class="newnote_content" th:method="POST" th:action="@{/{id}/edit(id=${note.getId()})}" th:object="${note}">
+                <label for="title" class="form-field__label">Заголовок</label>
+                <input id="title" type="text" th:field="*{title}" class="form-field__input" name="title"><br>
+                <div class="sql_info_note">
+                    <label for="idMysql" class="form-field__label_id">ID</label>
+                    <input id="idMysql" type="text" th:field="*{id}" class="form-field__input_id" name="idMysql" disabled>
+                    <label for="dateMysql" class="form-field__label_id">Дата</label>
+                    <input id="dateMysql" type="text" th:field="*{date}" class="form-field__input_date" name="dateMysql" disabled>
+                    <label for="typeMysql" class="form-field__label_id">Тип</label>
+                    <input id="typeMysql" type="text" th:field="*{type}" class="form-field__input_id" name="typeMysql" disabled>
+                </div>
+                <label for="bodyNote" class="form-field__label">Заметка</label>
+                <textarea id="bodyNote" class="form-field__textarea" th:field="*{body}" name="body"></textarea>
+                <button id="edit" type="submit" value="edit">Редактировать</button>
+                <button id="delete" type="submit" value="delete">Удалить</button>
+            </form>
+            <button id="json" class="json_button" value="json">Сохранить в JSON</button>
+            <button id="return" class="json_button" value="return">Вернуться в main</button>
+            <div id="noteSavings"></div>
+        </div>
+        <script src="http://localhost:8080/DeleteModule.js" type="module"></script>
+    </body>
+</html>

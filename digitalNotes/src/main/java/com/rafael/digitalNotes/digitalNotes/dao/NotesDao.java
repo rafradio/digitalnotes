@@ -2,7 +2,11 @@ package com.rafael.digitalNotes.digitalNotes.dao;
 
 import com.rafael.digitalNotes.digitalNotes.models.Note;
 import com.rafael.digitalNotes.digitalNotes.models.TypeOfNote;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,8 +23,31 @@ public class NotesDao {
         this.jdbcTemplate = jdbcTemplate;
     }
     
-    public List<Note> mainForNote(){
-        this.notes = jdbcTemplate.query("select * from notes", new NoteMapper());
+    public List<Note> mainForNote(int id){
+        String sql = "select * from notes where type=" + id;
+        this.notes = jdbcTemplate.query(sql, new NoteMapper());
         return this.notes;
+    }
+    
+    public void saveNote(Note note) {
+        Date date = Calendar.getInstance().getTime(); 
+        note.setDate(date);
+        jdbcTemplate.update("insert into notes (type, title, body, date) values(?,?,?,?)",
+                note.getType(), note.getTitle(), note.getBody(), note.getDate());
+    }
+        
+    public Note showNote(int id) {
+        return jdbcTemplate.query("SELECT * FROM notes WHERE id=?", new Object[]{id}, new NoteMapper())
+            .stream().findAny().orElse(null);
+        
+    }
+        
+    public void editNote(Note note, int id) {
+        Date date = Calendar.getInstance().getTime();
+        note.setDate(date);
+        System.out.println("Проверяем дату " + note.getDate() + "\n");
+        jdbcTemplate.update("UPDATE notes SET title=?, body=?, date=? WHERE id=?",
+                note.getTitle(), note.getBody(), note.getDate(), id);
+        
     }
 }

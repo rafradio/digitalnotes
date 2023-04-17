@@ -67,5 +67,20 @@ public class Note {
         this.date = date;
     }
     
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder()
+                .append("id=").append(this.getId())
+                .append(", ")
+                .append("type=").append(this.getType())
+                .append(", ")
+                .append("title=").append(this.getTitle())
+                .append(", ")
+                .append("body=").append(this.getBody())
+                .append(", ")
+                .append("date=").append(this.getDate());
+        return sb.toString();
+    }
+    
     
 }
