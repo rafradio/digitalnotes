@@ -1,11 +1,22 @@
 
 package com.rafael.digitalNotes.digitalNotes.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.Date;
 
+@Entity
 public class Note {
+    
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
     
+    @Column(name = "type")
     private int type;
     
     private String title;

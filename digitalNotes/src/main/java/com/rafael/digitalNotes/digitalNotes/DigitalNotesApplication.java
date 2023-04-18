@@ -9,5 +9,5 @@ public class DigitalNotesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DigitalNotesApplication.class, args);
 	}
-
+        
 }

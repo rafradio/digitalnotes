@@ -1,15 +1,35 @@
 
 package com.rafael.digitalNotes.digitalNotes.models;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.Date;
+import java.util.Set;
 
-
+@Entity
 public class TypeOfNote {
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
     private String typename;
     private String icon;
     private String color;
     private Date date;
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany
+    @JoinColumn(name = "type")
+    private Set<Note> notes;
+    
+//    @JoinColumn(name = "note_id", referencedColumnName = "id")
+//    private Note note;
+//    private Set<Note> notes;
 
     public TypeOfNote() {
     }

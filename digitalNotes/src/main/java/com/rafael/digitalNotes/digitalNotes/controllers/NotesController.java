@@ -54,7 +54,6 @@ public class NotesController {
     public String indexPage(Model model) {
         List<TypeOfNote> types = this.typesDao.mainForType();
         model.addAttribute("types", types);
-        System.out.println("Hello world: " + types.get(1).getTypename());
         return "notes/index";
     }
     
