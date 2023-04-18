@@ -1,3 +1,5 @@
+import {saveAction} from "http://localhost:8080/SaveData.js";
+
 function RequestNewNote() {
     this.reqButton = document.querySelector('.new_note');
     this.initSettings();
@@ -11,3 +13,4 @@ RequestNewNote.prototype.initSettings = function() {
 }
 
 const buttonNew = new RequestNewNote();
+saveAction.returnToMain();

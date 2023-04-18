@@ -43,12 +43,12 @@ public class NotesController {
         this.saveToFile = saveToFile;
     }
     
-    @GetMapping("/notes")
-    public String mainPage(Model model) {
-        List<Note> notes = new ArrayList<>();
-        model.addAttribute("notes", notes);
-        return "notes/main";
-    }
+//    @GetMapping("/notes")
+//    public String mainPage(Model model) {
+//        List<Note> notes = new ArrayList<>();
+//        model.addAttribute("notes", notes);
+//        return "notes/main";
+//    }
     
     @GetMapping("/index")
     public String indexPage(Model model) {
@@ -61,7 +61,10 @@ public class NotesController {
     @GetMapping("/notes/{id}")
     public String showNotes(@PathVariable("id") int id, Model model) {
         List<Note> notes = this.notesDao.mainForNote(id);
+        List<TypeOfNote> types = this.typesDao.mainForType();
+        List<String> type = types.stream().filter(p -> p.getId() == id).map(pm -> pm.getTypename()).collect(Collectors.toList());
         model.addAttribute("notes", notes);
+        model.addAttribute("type", type.get(0));
         return "notes/main";
     }
     
@@ -118,4 +121,10 @@ public class NotesController {
         this.notesDao.editNote(note, id);
         return "redirect:/index";
     }
+    
+    @PostMapping("/{id}/delete")
+    public String deleteNote(@ModelAttribute("note") Note note, @PathVariable("id") int id) {
+        this.notesDao.deleteNote(id);
+        return "redirect:/index";
+    }    
 }

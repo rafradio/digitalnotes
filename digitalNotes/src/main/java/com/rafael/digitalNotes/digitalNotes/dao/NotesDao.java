@@ -6,6 +6,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,11 @@ public class NotesDao {
     public List<Note> mainForNote(int id){
         String sql = "select * from notes where type=" + id;
         this.notes = jdbcTemplate.query(sql, new NoteMapper());
+        Collections.sort(this.notes, new Comparator() {
+            public int compare(Object o1, Object o2) {
+                return (((Note) o2).getDate().compareTo(((Note) o1).getDate()));
+            }
+        });
         return this.notes;
     }
     
@@ -49,5 +56,9 @@ public class NotesDao {
         jdbcTemplate.update("UPDATE notes SET title=?, body=?, date=? WHERE id=?",
                 note.getTitle(), note.getBody(), note.getDate(), id);
         
+    }
+    
+    public void deleteNote(int id) {
+        jdbcTemplate.update("DELETE FROM notes WHERE id=?", id);
     }
 }

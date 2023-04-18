@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="container">
-            <div class="title_main"><h2>Список заметок</h2></div>
+            <div class="title_main"><h2 th:text="'Список заметок - ' + ${type}">Список заметок</h2></div>
             <div class="list_of_notes" th:if="${notes!=null and !notes.empty}">
                 <div th:each="note : ${notes}">
                     <a th:href="@{/note/{id}(id=${note.getId()})}" th:text="${note.getId()} + '. ' + ${note.getTitle()}"></a>
@@ -17,6 +17,7 @@
             <div class="list_of_notes" th:unless="${notes!=null and !notes.empty}"><p>Заметок нет. Создайте первую заметку!</p></div>
             <div class="footer_main">
                     <div class="new_note"><p>Новая заметка</p></div>
+                    <div id="return" class="new_note"><p>Вернуться в main</p></div>
             </div>
         </div>
         <script src="http://localhost:8080/NewModule.js" type="module"></script>

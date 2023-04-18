@@ -69,7 +69,7 @@ body {
     display: flex;
     position: relative;
     margin-right: 20px;
-    width: 25%;
+    width: 30%;
     height: 35%;
     background: #220b30;
     border-radius: 5px;
@@ -90,14 +90,16 @@ body {
     width: 100%;
     height: 100%;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-left: 60px;
+    padding-right: 60px;
 }
 .buttons .new_note {
     display: flex;
     position: relative;
-    margin-right: 20px;
-    width: 35%;
-    height: 35%;
+/*    margin-right: 20px;*/
+    width: 90px;
+    height: 40px;
     background: #220b30;
     border-radius: 5px;
     align-items: center;
