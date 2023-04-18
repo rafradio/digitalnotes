@@ -22,14 +22,12 @@ public class TypeOfNote {
     private String icon;
     private String color;
     private Date date;
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
     @OneToMany
     @JoinColumn(name = "type")
     private Set<Note> notes;
     
-//    @JoinColumn(name = "note_id", referencedColumnName = "id")
-//    private Note note;
-//    private Set<Note> notes;
+
 
     public TypeOfNote() {
     }
